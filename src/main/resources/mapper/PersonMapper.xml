@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指用户自定义的命名空间。 -->
+<mapper namespace="com.OneToOne.PersonMapper">
+    <select id="selectPersonById" parameterType="int" resultMap="personMapper">
+        SELECT * FROM tb_person WHERE id=#{id}
+    </select>
+    <resultMap type="com.OneToOne.Person" id="personMapper" >
+        <id property="id" column="id"></id>
+        <id property="name" column="name"></id>
+        <id property="sex" column="sex"></id>
+        <id property="age" column="age"></id>
+        <association property="card" column="card_id" select="com.bobi.po.CardMapper.selectCardById" javaType="com.OneToOne.Card">
+
+        </association>
+    </resultMap>
+</mapper>
